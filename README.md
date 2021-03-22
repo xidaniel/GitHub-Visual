@@ -6,7 +6,7 @@ The main objective is to develop a Front End Web Application that provides a sum
 
 ## Built With 
 
-In this project, we use the following framework, library and tools to built this project.
+In this project, we use the following framework, library and tools to built this project.
 
 * [React](https://reactjs.org/) 
 * [axios](https://yarnpkg.com/package/axios) 
@@ -16,7 +16,7 @@ In this project, we use the following framework, library and tools to built thi
 
 ## Features
 
-1. Archiving Recommendation
+1. Archived Recommendation
 
    1. Use can customize the weights of metrics
 
