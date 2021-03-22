@@ -7,7 +7,6 @@ The main objective is to develop a Front End Web Application that provides a sum
 ## Built With 
 
 In this project, we use the following framework, library and tools to built this project.
-
 * [React](https://reactjs.org/) 
 * [axios](https://yarnpkg.com/package/axios) 
 * [Ant Design](https://ant.design/) 
@@ -35,33 +34,30 @@ In this project, we use the following framework, library and tools to built thi
 ### Prerequisites
 
 * yarn (on mac)
-
   ```sh
   brew install yarn
   ```
-
+  
 * VSCode
 
 ### Installation
 
-1. Clone the repo
-
+2. Clone the repo
    ```sh
    git clone https://github.com/brown-ccv-jobs/brown-rse-spring-2021-xidaniel.git
    ```
-
-2. Install yarn packages
-
+   
+3. Install yarn packages
    ```sh
    yarn
    ```
-
-3. Install antd design
-
+   
+4. Install antd design
+   
    ```shell
    yarn add antd
    ```
-
+   
 4. Install axios
 
    ```shell
