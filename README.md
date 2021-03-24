@@ -82,6 +82,25 @@ In this project, we use the following framework, library and tools to built this
    yarn start
    ```
 
+## Deploy to GitHub
+
+1. Build
+
+   ```shell
+   yarn run build
+   ```
+
+2. Modify .gitignore
+
+   ```shell
+   delete 
+   /build
+   ```
+
+3. Go Settings --> Open GitHub Pages
+
+4. Add **build/index.html** to the tail of generated link
+
 ## Contact
 
 Xi Wang -  xiwang3317@gmail.com
