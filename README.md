@@ -1,6 +1,6 @@
-# Repositories Visualization of Brown-ccv
+# Repositories Visualization and Archived Recommendation of Brown-ccv
 
-## About The Project
+## About
 
 The main objective is to develop a Front End Web Application that provides a summary or visualization that helps CCV determine which of its public repositories in the [brown-ccv GitHub organization](https://github.com/brown-ccv) could/should be archived. 
 
@@ -14,23 +14,33 @@ In this project, we use the following framework, library and tools to built this
 * [axios](https://yarnpkg.com/package/axios) 
 * [Ant Design](https://ant.design/) 
 * [Echarts](https://echarts.apache.org/en/index.html)
-* [VSCode](https://jquery.com)
+* [VSCode](https://code.visualstudio.com/)
 
 ## Features
 
-1. Archived Recommendation
+1. Archived Recommender
 
-   1. Use can customize the weights of metrics
+   1. User can customize the weights of metrics (time interval, issues, forks).
 
-   2. The system will generate the archived recommendation confidence
+      ```mathematica
+      Input: timeWeight, issuesWeight, forksWeight
+      
+      Formula: timeWeight * ((now time - updated_time) / (24 * 60 * 60 * 1000)) + issuesWeight * issues + forksWeight * forks
+      
+      Output: value of each repo
+      ```
 
-      ![softmax](image/softmax.png)
+   2. The system will generate the archived recommendation result represented by probability.
+
+   3. The softmax function is used to calculate the relative probability of each repo. 
+
+      <img src="image/softmax.png/" align="center" width="250" height="60">
 
       
 
-2. A table form of repos information
+2. The two statistics figures represent **commits per repo(top 10)** and **Repos per language**.
 
-3. Summary and Visualization
+3. Repos information table to represent the detailed informations of each repo.
 
 ## Getting Started
 
@@ -92,11 +102,10 @@ In this project, we use the following framework, library and tools to built this
 
 2. Modify .gitignore
 
-   ```shell
-   delete 
-   /build
+   ```markdown
+   delete '/build' in .gitignore file
    ```
-
+   
 3. Go Settings --> Open GitHub Pages
 
 4. Add **build/index.html** to the tail of generated link
