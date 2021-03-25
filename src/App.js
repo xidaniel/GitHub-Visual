@@ -34,7 +34,7 @@ const columns = [
     },
     render: (value) => {
       //format time 
-      return moment(value).format('YYYY-MM-DD HH:mm:ss')
+      return moment(value).format('YYYY-MM-DD HH:mm')
     }
   },
   {
@@ -48,7 +48,7 @@ const columns = [
     },
     render: (value) => {
       //format time 
-      return moment(value).format('YYYY-MM-DD HH:mm:ss')
+      return moment(value).format('YYYY-MM-DD HH:mm')
     }
   },
   {
@@ -63,11 +63,10 @@ const columns = [
     }
   },
   {
-    title: 'Starts',
-    key: 'stargazers_count',
-    dataIndex: 'stargazers_count',
-    //ascending sorting
-    sorter: (a, b) => a.stargazers_count - b.stargazers_count
+    title: 'Commits',
+    key: 'commits',
+    dataIndex: 'commits',
+    sorter: (a, b) => a.commits - b.commits
   },
   {
     title: 'Issues',
@@ -82,10 +81,11 @@ const columns = [
     sorter: (a, b) => a.forks_count - b.forks_count
   },
   {
-    title: 'Commits',
-    key: 'commits',
-    dataIndex: 'commits',
-    sorter: (a, b) => a.commits - b.commits
+    title: 'Starts',
+    key: 'stargazers_count',
+    dataIndex: 'stargazers_count',
+    //ascending sorting
+    sorter: (a, b) => a.stargazers_count - b.stargazers_count
   },
   {
     title: 'Archived Status',
@@ -363,7 +363,7 @@ class App extends React.Component {
    //submit action
   handleSubmit({ time, Issues, Forks }) {
     let { list } = this.state;
-    let archivedList = softmax(time, Issues, Forks, list);
+    let archivedList = softmax(time, Issues, Forks, list );
     this.setState({ archivedList })
   }
 
@@ -381,7 +381,7 @@ class App extends React.Component {
             <div className="statistics-info">
               <div>
                 <h3 className="user-name">{userInfo.login}</h3>
-                <div><img src={githubIcon} alt="github" />{167781} contributions on github</div>
+                <div><img src={githubIcon} alt="github" />{getCommits(commitsData)} contributions on github</div>
                 <div><img src={repositoryIcon} alt="repositoryIcon" />{userInfo.public_repos} public repos</div>
                 <div><img src={clockIcon} alt="clockIcon" />Joined Github  {new Date().getFullYear() - new Date(userInfo.created_at).getFullYear()} years ago</div>
                 <div><img className="email-icon" src={emailIcon} alt="emailIcon" />{userInfo.email || 'null'}</div>

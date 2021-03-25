@@ -16,6 +16,17 @@ export const validatorNumber = (rule, value) => {
 }
 
 /*
+Count the total number of commits
+*/
+export const getCommits = function(data) {
+    var total = 0;
+    for (var j in data) {
+        total += data[j];
+    }
+    return total;
+}
+
+/*
 This is the recommendation algorithm
 */
 //get input weight to calculate each repo's value
