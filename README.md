@@ -25,7 +25,7 @@ In this project, I used the following framework, library and tools to built this
       ```mathematica
       Input: timeWeight, issuesWeight, forksWeight
       
-      Formula: timeWeight * ((now time - updated_time) / (24 * 60 * 60 * 1000)) + issuesWeight * issues + forksWeight * forks
+      Formula: timeWeight * ((now time - updated_time) / (4 * 31 * 24 * 60 * 60 * 1000)) + issuesWeight * issues + forksWeight * forks
       
       Output: value of each repo
       ```
