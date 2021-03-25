@@ -98,6 +98,8 @@ const columns = [
   },
 ]
 
+
+
 class App extends React.Component {
 
   // init data
@@ -351,6 +353,8 @@ class App extends React.Component {
     reposCommitInit.setOption(reposCommitsOptions)
   }
 
+
+
   //click member's avatar to skip
   handleToavatarGit(url) {
     window.open(url)
@@ -409,7 +413,7 @@ class App extends React.Component {
                 <Form className="weigth-form"
                   onFinish={(value) => this.handleSubmit(value)}>
                   <Form.Item
-                    label="time Intervel"
+                    label="Time Intervel"
                     name="time"
                     colon={false}
                     rules={[{ validator: validatorNumber }]}
@@ -432,7 +436,7 @@ class App extends React.Component {
                   >
                     <Input />
                   </Form.Item>
-                  <Button className="submit-btn" htmlType="submit">GO</Button>
+                  <Button className="submit-btn" htmlType="submit">Search</Button>
                 </Form>
               </div>
               <div className="archive-wrapper-table">

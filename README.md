@@ -8,7 +8,7 @@ The main objective is to develop a Front End Web Application that provides a sum
 
 ## Built With 
 
-In this project, we use the following framework, library and tools to built this project.
+In this project, I used the following framework, library and tools to built this project.
 
 * [React](https://reactjs.org/) 
 * [axios](https://yarnpkg.com/package/axios) 

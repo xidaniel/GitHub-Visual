@@ -18,7 +18,7 @@ export const validatorNumber = (rule, value) => {
 /*
 Count the total number of commits
 */
-export const getCommits = function(data) {
+export const getCommits = data => {
     var total = 0;
     for (var j in data) {
         total += data[j];
@@ -33,7 +33,7 @@ This is the recommendation algorithm
 const getValue = (timeWei, issuesWei, forkWei, data) => {
     let result = [];
     data.forEach(item => {
-        let timeValue = timeWei * ((new Date().getTime() - new Date(item.updated_at).getTime()) / (24 * 60 * 60 * 1000));
+        let timeValue = timeWei * ((new Date().getTime() - new Date(item.updated_at).getTime()) / (4 * 31 * 24 * 60 * 60 * 1000));
         result.push({
             repoName: item.name,
             value: timeValue + issuesWei * item.open_issues + forkWei * item.forks
@@ -55,7 +55,7 @@ export const softmax = (timeWei, issuesWei, forkWei, data) => {
     let result = getValue(t, i, f, data) || []
     let totalExp = 0;
     result.forEach(item => {
-        let repoExp = isNaN(parseFloat(Math.exp(item.value.toFixed(2)).toString().substr(0,3))) ? 0 : parseFloat(Math.exp(item.value.toFixed(2)).toString().substr(0,3));
+        let repoExp = isNaN(parseFloat(Math.exp(item.value.toFixed(2)).toString().substr(0,12))) ? 0 : parseFloat(Math.exp(item.value.toFixed(2)).toString().substr(0,12));
         totalExp += repoExp;
         item.value = repoExp;
     })
@@ -63,5 +63,6 @@ export const softmax = (timeWei, issuesWei, forkWei, data) => {
     result.forEach(item => {
         item.value = (item.value / totalExp).toFixed(6);
     })
+    console.log(result.sort((a, b) => b.value - a.value).slice(0, 5));
     return result.sort((a, b) => b.value - a.value).slice(0, 5)
 }
