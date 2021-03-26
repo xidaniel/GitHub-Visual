@@ -1,4 +1,4 @@
-const BASE_URL = "http://api.github.com/"
+const BASE_URL = "https://api.github.com/"
 const APIS = {
     userInfo: BASE_URL + "users/brown-ccv",
     repositories: BASE_URL + "users/brown-ccv/repos",
