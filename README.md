@@ -4,6 +4,8 @@
 
 The main objective is to develop a Front End Web Application that provides a summary or visualization that helps CCV determine which of its public repositories in the [brown-ccv GitHub organization](https://github.com/brown-ccv) could/should be archived. 
 
+[Demo Link]()
+
 ![demo](image/demo.png)
 
 ## Built With 
@@ -113,5 +115,3 @@ In this project, I used the following framework, library and tools to built this
 ## Contact
 
 Xi Wang -  xiwang3317@gmail.com
-
-Project Link: 

@@ -14,7 +14,10 @@ import APIS from './api/api';
 import { validatorNumber, getCommits, softmax } from './utils'
 import commitsData from './assets/commits-data'
 
-//define columns name
+/*
+define the colums of repos table 
+line 21 - line 102
+*/
 const columns = [
   {
     title: 'Repo Name',
@@ -112,6 +115,7 @@ class App extends React.Component {
   }
 
   //react life cycle
+  //after rendering to get repos data 
   componentDidMount() {
     let time = localStorage.getItem('time');
     let currentTime = new Date().getTime();
@@ -212,7 +216,7 @@ class App extends React.Component {
   /*
     format the data for language statistics graph
     init echarts object and config echarts
-    line 215 ~ 292
+    line 221 ~ 298
     */
   formatLanguagePerData(data) {
     //find unique name
@@ -296,7 +300,7 @@ class App extends React.Component {
   /*
     format the data for commits statistics graph
     init echarts object and config echarts
-    line 299 ~ 352
+    line 305 ~ 359
   */
   formatCommitPerData(data) {
     let seriesData = [];
@@ -371,7 +375,7 @@ class App extends React.Component {
     this.setState({ archivedList })
   }
 
-
+  //render website
   render() {
     let { userInfo, memberList, list, archivedList } = this.state
     return (
@@ -407,6 +411,7 @@ class App extends React.Component {
               <h3>Repos Information</h3>
               <Table className="table" size="small" rowKey="id" columns={columns} dataSource={list} />
             </div>
+
             <div className="archive-wrapper">
               <div className="archive-wrapper-header">
                 <h3>Archived Recommender</h3>
@@ -457,6 +462,7 @@ class App extends React.Component {
                 }
               </div>
             </div>
+            
           </div>
         </div>
       </div>
