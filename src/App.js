@@ -266,26 +266,26 @@ class App extends React.Component {
       legend: {
         left: 'center',
         bottom: 0,
-        itemWidth: 14,
-        itemHeight: 8,
+        itemWidth: 1,
+        itemHeight: 7,
         textStyle: {
-          fontSize: 10
+          fontSize: 10,
         }
       },
       series: [
         {
           name: 'Language per',
           type: 'pie',
-          radius: ['40%', '60%'],
+          radius: ['45%', '70%'],
           avoidLabelOverlap: false,
           label: {
             show: false,
-            position: 'center'
+            position: 'center',
           },
           emphasis: {
             label: {
-              show: false,
-              fontSize: '40',
+              show: true,
+              fontSize: '12',
               fontWeight: 'bold'
             }
           },
@@ -326,17 +326,17 @@ class App extends React.Component {
       legend: {
         left: 'center',
         bottom: 0,
-        itemWidth: 14,
-        itemHeight: 8,
+        itemWidth: 1,
+        itemHeight: 7,
         textStyle: {
-          fontSize: 10
+          fontSize: 10,
         }
       },
       series: [
         {
           name: 'Commits count',
           type: 'pie',
-          radius: ['40%', '60%'],
+          radius: ['45%', '70%'],
           avoidLabelOverlap: false,
           label: {
             show: false,
@@ -344,8 +344,8 @@ class App extends React.Component {
           },
           emphasis: {
             label: {
-              show: false,
-              fontSize: '40',
+              show: true,
+              fontSize: '12',
               fontWeight: 'bold'
             }
           },
