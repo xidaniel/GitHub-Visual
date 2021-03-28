@@ -1,5 +1,5 @@
 import './App.css';
-import { Button, Input, Table, Form } from 'antd';
+import { Button, Input, Table, Form, Row, Col } from 'antd';
 import React from 'react';
 import axios from 'axios';
 import moment from 'moment'
@@ -16,7 +16,8 @@ import commitsData from './assets/commits-data'
 
 /*
 define the colums of repos table 
-line 21 - line 102
+line 22 - line 103
+https://ant.design/components/table/#header
 */
 const columns = [
   {
@@ -130,7 +131,7 @@ class App extends React.Component {
         let repositoriesData = JSON.parse(localStorage.getItem('repositoriesData'));
         let memberList = JSON.parse(localStorage.getItem('memberList'));
         this.formatLanguagePerData(repositoriesData)
-        //sort commit data, descending order, get top 10 data
+        //sort commits data, descending order, get top 10 data
         let commitTop10Arr = repositoriesData.sort((a, b) => b.commits - a.commits).slice(0, 10)
         this.setState({
           userInfo,
@@ -214,9 +215,10 @@ class App extends React.Component {
   }
 
   /*
-    format the data for language statistics graph
+    format the data for language Doughnut Chart
     init echarts object and config echarts
-    line 221 ~ 298
+    line 223 ~ 300
+    https://echarts.apache.org/examples/en/editor.html?c=pie-doughnut
     */
   formatLanguagePerData(data) {
     //find unique name
@@ -298,7 +300,7 @@ class App extends React.Component {
   }
 
   /*
-    format the data for commits statistics graph
+    format the data for commits Doughnut Chart
     init echarts object and config echarts
     line 305 ~ 359
   */
@@ -380,70 +382,95 @@ class App extends React.Component {
     let { userInfo, memberList, list, archivedList } = this.state
     return (
       <div className="App">
-        <div className="title-header">
-          <img src={userInfo.avatar_url} alt="头像" />
-          <div className="title">{userInfo.name}</div>
-        </div>
+        
+        <Row className="title-header">
+          <Col xs={24} sm={24} md={6} lg={3} xl={3}>
+            <img src={userInfo.avatar_url} alt="avatar" /></Col>
+          <Col xs={24} sm={24} md={18} lg={18} xl={18}>
+            <div className="title">{userInfo.name}</div></Col>
+        </Row>
+
         <div className="main">
-          <div className="statistics-container">
-            <div className="statistics-info">
-              <div>
-                <h3 className="user-name">{userInfo.login}</h3>
-                <div><img src={githubIcon} alt="github" />{getCommits(commitsData)} contributions on github</div>
-                <div><img src={repositoryIcon} alt="repositoryIcon" />{userInfo.public_repos} public repos</div>
-                <div><img src={clockIcon} alt="clockIcon" />Joined Github  {new Date().getFullYear() - new Date(userInfo.created_at).getFullYear()} years ago</div>
-                <div><img className="email-icon" src={emailIcon} alt="emailIcon" />{userInfo.email || 'null'}</div>
+
+          <Row className="statistics-container">
+            <Col xs={24} sm={24} md={10} lg={4} xl={4}>
+              <div className="statistics-info">
+                <div>
+                  <h3 className="user-name">{userInfo.login}</h3>
+                  <div><img src={githubIcon} alt="github" />{getCommits(commitsData)} contributions on github</div>
+                  <div><img src={repositoryIcon} alt="repositoryIcon" />{userInfo.public_repos} public repos</div>
+                  <div><img src={clockIcon} alt="clockIcon" />Joined Github  {new Date().getFullYear() - new Date(userInfo.created_at).getFullYear()} years ago</div>
+                  <div><img className="email-icon" src={emailIcon} alt="emailIcon" />{userInfo.email || 'null'}</div>
+                </div>
               </div>
-            </div>
-            <div id="repos-commit-top10"></div>
-            <div id="repos-echarts"></div>
-            <div className="member-container">
-              <p className="member-title">
-                <span>People</span>
-              </p>
-              <div className="member-list">{memberList.map(item => (
-                <img className="avatar" key={item.id} src={item.avatar_url} alt="avatar_url" onClick={() => this.handleToavatarGit(item.html_url)} />
-              ))}</div>
-            </div>
-          </div>
-          <div className="table-container">
-            <div>
+            </Col>
+            <Col xs={24} sm={24} md={14} lg={7} xl={7}>
+              <div id="repos-commit-top10"></div>
+            </Col>
+            <Col xs={24} sm={24} md={14} lg={7} xl={7}>
+              <div id="repos-echarts"></div>
+            </Col>
+            <Col xs={24} sm={24} md={10} lg={5} xl={5} push={1}>
+              <div className="member-container">
+                <p className="member-title">
+                  <span>People</span>
+                </p>
+                <div className="member-list">{memberList.map(item => (
+                  <img className="avatar" key={item.id} src={item.avatar_url} alt="avatar_url" onClick={() => this.handleToavatarGit(item.html_url)} />
+                ))}</div>
+              </div>
+            </Col>
+          </Row>
+          
+          <Row className="table-container">
+            <Col xs={24} sm={24} md={16} lg={16} xl={16}>
               <h3>Repos Information</h3>
               <Table className="table" size="small" rowKey="id" columns={columns} dataSource={list} />
-            </div>
+            </Col>
 
-            <div className="archive-wrapper">
+            <Col className="archive-wrapper" xs={24} sm={24} md={7} lg={7} xl={7} offset={1}>
               <div className="archive-wrapper-header">
                 <h3>Archived Recommender</h3>
-                <Form className="weigth-form"
-                  onFinish={(value) => this.handleSubmit(value)}>
-                  <Form.Item
-                    label="Time Intervel"
-                    name="time"
-                    colon={false}
-                    rules={[{ validator: validatorNumber }]}
-                  >
-                    <Input />
-                  </Form.Item>
-                  <Form.Item
-                    label="Issues"
-                    name="Issues"
-                    colon={false}
-                    rules={[{ validator: validatorNumber }]}
-                  >
-                    <Input />
-                  </Form.Item>
-                  <Form.Item
-                    label="Forks"
-                    name="Forks"
-                    colon={false}
-                    rules={[{ validator: validatorNumber }]}
-                  >
-                    <Input />
-                  </Form.Item>
-                  <Button className="submit-btn" htmlType="submit">Search</Button>
-                </Form>
+                <Row gutter={[8, 16]}>
+                  <Form className="weigth-form"
+                    onFinish={(value) => this.handleSubmit(value)}>
+                    <Col span={6} xs={12} sm={12} md={12} lg={12} xl={6}>
+                      <Form.Item
+                        label="Time Intervel"
+                        name="time"
+                        colon={false}
+                        rules={[{ validator: validatorNumber }]}
+                      >
+                        <Input />
+                      </Form.Item>
+                    </Col>
+                    <Col span={6} xs={12} sm={12} md={12} lg={12} xl={6}>
+                      <Form.Item
+                        label="Issues"
+                        name="Issues"
+                        colon={false}
+                        rules={[{ validator: validatorNumber }]}
+                      >
+                        <Input />
+                      </Form.Item>
+                    </Col>
+                    <Col span={6} xs={12} sm={12} md={12} lg={12} xl={6}>
+                      <Form.Item
+                        label="Forks"
+                        name="Forks"
+                        colon={false}
+                        rules={[{ validator: validatorNumber }]}
+                      >
+                        <Input />
+                      </Form.Item>
+                    </Col>
+                    <Col span={5} xs={12} sm={12} md={12} lg={12} xl={5}>
+                      <Button className="submit-btn" htmlType="submit">Search</Button>
+                    </Col>
+                  </Form>
+                </Row>
               </div>
+
               <div className="archive-wrapper-table">
                 <div className="archive-table-header">
                   <div>Repo Name</div>
@@ -461,10 +488,12 @@ class App extends React.Component {
                   <img className="empty-icon" src={emptyIcon} alt="empty" />
                 }
               </div>
-            </div>
+            </Col>
             
-          </div>
+          </Row>
+
         </div>
+
       </div>
     );
   }

@@ -1,19 +1,19 @@
-# Repositories Visualization and Archived Recommendation of Brown-ccv
+# Repositories Visualization and Archived Recommendation
 
 ## About
 
 The main objective is to develop a Front End Web Application that provides a summary or visualization that helps CCV determine which of its public repositories in the [brown-ccv GitHub organization](https://github.com/brown-ccv) could/should be archived. 
 
-[Demo Link]()
+[Demo Link](http://www.algoxi.com/GitHub-Visual/)
 
 ![demo](image/demo.png)
 
 ## Built With 
 
-In this project, I used the following framework, library and tools to built this project.
+The following framework, library, and tools were used to build this project.
 
 * [React](https://reactjs.org/) 
-* [axios](https://yarnpkg.com/package/axios) 
+* [Axios](https://yarnpkg.com/package/axios) 
 * [Ant Design](https://ant.design/) 
 * [Echarts](https://echarts.apache.org/en/index.html)
 * [VSCode](https://code.visualstudio.com/)
@@ -40,9 +40,18 @@ In this project, I used the following framework, library and tools to built this
 
       
 
-2. The two statistics figures represent **commits per repo(top 10)** and **Repos per language**.
+2. The two statistics figures represent **Commits per Repo(top 10)** and **Repos per Language**.
+   - [Doughnut Chart](https://echarts.apache.org/examples/en/editor.html?c=pie-doughnut) 
 
 3. Repos information table to represent the detailed informations of each repo.
+   - Each column has three actions: sort ascending, sort descending, and cancel sorting.
+   - [Repos Table](https://ant.design/components/table/#header)
+
+4. Grid System to make sure that every area can have stable arrangement.
+   - [Grid System](https://ant.design/components/grid/)
+
+5. Optimized data fetching latency by using caching mechanism reduced by 70%. 
+   - When the user reloads the page within 60 mins, the cached data will be used directly without fetching the new data.
 
 ## Getting Started
 
@@ -94,7 +103,7 @@ In this project, I used the following framework, library and tools to built this
    yarn start
    ```
 
-## Deploy to GitHub
+## Deploy to GitHub Page
 
 1. Build
 
@@ -102,16 +111,29 @@ In this project, I used the following framework, library and tools to built this
    yarn run build
    ```
 
-2. Modify .gitignore
+2. Install gh-pages 
 
-   ```markdown
-   delete '/build' in .gitignore file
+   ```shell
+   yarn install gh-pages --save-dev
    ```
-   
-3. Go Settings --> Open GitHub Pages
-
-4. Add **build/index.html** to the tail of generated link
-
+3. Config package.json file
+   - Set homepage
+      ```shell
+      "homepage": "https://github.com/{user name}/{repo name}.git"
+      ```
+   - Set scripts
+     ```shell
+     "predeploy": "yarn run build",
+     "deploy": "gh-pages -d build"
+     ```
+4. Deploy
+   ```shell
+   yarn run deploy
+   ```
+5. Go Settings --> Set GitHub Pages
+   ```shell
+   http://www.{user}.github.io/{repo}
+   ```
 ## Contact
 
 Xi Wang -  xiwang3317@gmail.com
