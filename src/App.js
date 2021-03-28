@@ -376,7 +376,7 @@ class App extends React.Component {
     let archivedList = softmax(time, Issues, Forks, list );
     this.setState({ archivedList })
   }
-
+  
   //render website
   render() {
     let { userInfo, memberList, list, archivedList } = this.state
@@ -469,6 +469,7 @@ class App extends React.Component {
                     </Col>
                   </Form>
                 </Row>
+                <h4 className="weight-notice">*Each weight value is between 0 ~ 1; the sum is 1.</h4>
               </div>
 
               <div className="archive-wrapper-table">
